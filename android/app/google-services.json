@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "107018858033",
+    "project_id": "learnster-academy-notes",
+    "storage_bucket": "learnster-academy-notes.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:107018858033:android:60348ec33ac760b70c2f10",
+        "android_client_info": {
+          "package_name": "com.example.learnster_academy_notes"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "107018858033-kje29njdrqqlgocim60f1pq7mn1ov78l.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBsn8spo_U9sTYduts3xAZ0OtlQGNi-R-4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "107018858033-kje29njdrqqlgocim60f1pq7mn1ov78l.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
