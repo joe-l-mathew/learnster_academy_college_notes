@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:learnster_academy_notes/onBording/select_university.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../subject.dart';
 
 ValueNotifier<List<String>> univList = ValueNotifier([]);
 String selectuniv = "Click here to select";
+ValueNotifier<String> selectedCourse = ValueNotifier("");
 
 class SelectSemester extends StatefulWidget {
   const SelectSemester({Key? key}) : super(key: key);
@@ -24,6 +26,61 @@ class _SelectSemesterState extends State<SelectSemester> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        actions: [
+          TextButton(
+            // color: Colors.black,
+            // icon: const Icon(Icons.edit),
+            // tooltip: 'Edit your details',
+            child: Row(
+              children: const [
+                Icon(
+                  (Icons.edit),
+                ),
+                // Text("Change semester"),
+              ],
+            ),
+            onPressed: () {
+              showDialog(
+                  context: context,
+                  builder: (ctx) => AlertDialog(
+                        elevation: 10,
+                        title: const Text("Edit your course"),
+                        content: const Text(
+                            "Do you want to edit your default University and course?"),
+                        actions: <Widget>[
+                          TextButton(
+                            onPressed: () {
+                              Navigator.of(ctx).pop();
+                            },
+                            child: const Text("no"),
+                          ),
+                          TextButton(
+                            onPressed: () {
+                              Navigator.pushAndRemoveUntil(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (builder) => SelectUniversity()),
+                                  (route) => false);
+                            },
+                            child: const Text("Yes"),
+                          ),
+                        ],
+                      ));
+            },
+          ),
+        ],
+        backgroundColor: Colors.white,
+        elevation: 0,
+        centerTitle: true,
+        title: ValueListenableBuilder(
+          valueListenable: selectedCourse,
+          builder: (context, String value, child) => Text(
+            value,
+            style: TextStyle(color: Colors.black),
+          ),
+        ),
+      ),
       body: SafeArea(
           child: Center(
         child: ValueListenableBuilder(
@@ -93,6 +150,8 @@ Future<void> listExample() async {
   await Hive.initFlutter();
   // SharedPreferences prefs = await SharedPreferences.getInstance();
   var box = await Hive.openBox('studentdata');
+
+  selectedCourse.value = box.get("course");
 
   //Add root to semesters
   firebase_storage.ListResult result = await firebase_storage

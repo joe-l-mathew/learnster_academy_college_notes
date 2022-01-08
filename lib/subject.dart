@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:learnster_academy_notes/display_materials.dart';
-import 'package:learnster_academy_notes/onBording/select_university.dart';
+import 'package:learnster_academy_notes/onBording/select_semester.dart';
+// import 'package:learnster_academy_notes/onBording/select_university.dart';
 import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 
 ValueNotifier<List<String>> subList = ValueNotifier([]);
@@ -60,33 +61,38 @@ class _SelectSubjectState extends State<SelectSubject> {
               ],
             ),
             onPressed: () {
-              showDialog(
-                  context: context,
-                  builder: (ctx) => AlertDialog(
-                        elevation: 10,
-                        title: const Text("Edit your subjects"),
-                        content:
-                            const Text("Do you want to edit your subjects?"),
-                        actions: <Widget>[
-                          TextButton(
-                            onPressed: () {
-                              Navigator.of(ctx).pop();
-                            },
-                            child: const Text("no"),
-                          ),
-                          TextButton(
-                            onPressed: () {
-                              Navigator.pushAndRemoveUntil(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (builder) =>
-                                          const SelectUniversity()),
-                                  (route) => false);
-                            },
-                            child: const Text("Yes"),
-                          ),
-                        ],
-                      ));
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (builder) => const SelectSemester()));
+
+              // showDialog(
+              //     context: context,
+              //     builder: (ctx) => AlertDialog(
+              //           elevation: 10,
+              //           title: const Text("Edit your subjects"),
+              //           content:
+              //               const Text("Do you want to edit your subjects?"),
+              //           actions: <Widget>[
+              //             TextButton(
+              //               onPressed: () {
+              //                 Navigator.of(ctx).pop();
+              //               },
+              //               child: const Text("no"),
+              //             ),
+              //             TextButton(
+              //               onPressed: () {
+              //                 Navigator.push(
+              //                     context,
+              //                     MaterialPageRoute(
+              //                         builder: (builder) =>
+              //                             const SelectSemester()));
+              //                     // (route) => false);
+              //               },
+              //               child: const Text("Yes"),
+              //             ),
+              //           ],
+              //         ));
             },
           ),
         ],
